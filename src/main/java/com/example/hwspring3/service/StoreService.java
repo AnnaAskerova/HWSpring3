@@ -1,10 +1,10 @@
 package com.example.hwspring3.service;
 
 import com.example.hwspring3.model.Item;
-import com.example.hwspring3.record.ItemRequest;
 import com.example.hwspring3.repository.Basket;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -19,9 +19,13 @@ public class StoreService {
         return this.basket.getBasket();
     }
 
-    public Item addItem(ItemRequest itemRequest) {
-        Item item = new Item(itemRequest.getId());
-        this.basket.addItem(item);
-        return item;
+    public List<Item> addItem(List<Integer> id) {
+        List<Item> list = new LinkedList<>();
+        for (Integer integer : id) {
+            Item item = new Item(integer);
+            this.basket.addItem(item);
+            list.add(item);
+        }
+        return list;
     }
 }

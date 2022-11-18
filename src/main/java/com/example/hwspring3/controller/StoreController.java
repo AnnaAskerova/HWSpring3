@@ -1,7 +1,6 @@
 package com.example.hwspring3.controller;
 
 import com.example.hwspring3.model.Item;
-import com.example.hwspring3.record.ItemRequest;
 import com.example.hwspring3.service.StoreService;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +19,8 @@ public class StoreController {
         return this.storeService.getBasket();
     }
 
-    @PostMapping("/order/add")
-    public Item addItem(@RequestBody ItemRequest itemRequest) {
-        return this.storeService.addItem(itemRequest);
+    @GetMapping("/order/add")
+    public List<Item> addItem(@RequestParam("id") List<Integer> id) {
+            return this.storeService.addItem(id);
     }
 }
